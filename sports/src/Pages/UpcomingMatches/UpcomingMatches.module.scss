@@ -1,0 +1,13 @@
+.userDetails {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  .balanceText {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+  }
+}
