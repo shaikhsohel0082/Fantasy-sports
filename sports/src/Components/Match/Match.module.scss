@@ -33,6 +33,7 @@
     padding: 8px 15px;
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.934);
     border-radius: 8px;
+    cursor:pointer;
     .logo {
       height: 5rem;
       width: 5rem;
@@ -62,6 +63,11 @@
       font-size: 2rem;
     }
   }
+
+  }
+    .card:hover{
+    opacity: 0.8;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.934);
   }
   @media screen and (max-width:800px) {
     .card{

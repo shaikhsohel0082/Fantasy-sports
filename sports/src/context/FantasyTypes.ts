@@ -1,27 +1,18 @@
 import type { JSX } from "react";
+import type { IPlayer } from "../Services/getAllPlayers";
 
-export interface Player {
-  id: string;
-  name: string;
-  role: "BAT" | "WK" | "AR" | "BOWL";
-  credit: number;
-  team: string;
-}
 
 export interface FantasyTeam {
   id: string;
   matchId: string;
-  players: Player[];
+  players: IPlayer[];
   captainId: string;
   viceCaptainId: string;
 }
 
 export interface FantasyContextType {
-  selectedMatchId: string | null;
-  setSelectedMatchId: (id: string) => void;
-
-  selectedPlayers: Player[];
-  addPlayer: (player: Player) => void;
+  selectedPlayers: IPlayer[];
+  addPlayer: (player: IPlayer) => void;
   removePlayer: (id: string) => void;
   clearPlayers: () => void;
 

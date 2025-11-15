@@ -1,0 +1,23 @@
+.backBtn {
+  background: transparent;
+  border: none;
+  color: aliceblue;
+  align-self: flex-start;
+}
+.footer {
+  position: relative;
+  width: 100;
+  background-color: rgb(21, 14, 6);
+  .footerWrapper {
+    width: 100%;
+    position: absolute;
+    bottom: 5px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    .startText {
+      font-size: 1rem;
+      color: red;
+    }
+  }
+}

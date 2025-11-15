@@ -1,13 +1,11 @@
 import { createContext, useContext, useState } from "react";
 import type { ReactNode } from "react";
-import type { FantasyContextType, FantasyTeam, Player } from "./FantasyTypes";
-import type { SportsName } from "../Pages/UpcomingMatches/UpcomingMatches";
+import type { FantasyContextType, FantasyTeam, Player, SportsName } from "./FantasyTypes";
+
 
 const FantasyContext = createContext<FantasyContextType | undefined>(undefined);
 
 export const FantasyProvider = ({ children }: { children: ReactNode }) => {
-  const [selectedMatchId, setSelectedMatchId] = useState<string | null>(null);
-
   const [selectedPlayers, setSelectedPlayers] = useState<Player[]>([]);
 
   const [allTeams, setAllTeams] = useState<FantasyTeam[]>(() => {
@@ -35,8 +33,6 @@ export const FantasyProvider = ({ children }: { children: ReactNode }) => {
   return (
     <FantasyContext.Provider
       value={{
-        selectedMatchId,
-        setSelectedMatchId,
         selectedPlayers,
         addPlayer,
         removePlayer,

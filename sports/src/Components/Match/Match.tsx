@@ -2,6 +2,7 @@ import { useState } from "react";
 import styles from "./Match.module.scss";
 import { useAllMatches } from "../../Hooks/useGetAllMatches";
 import { useFantasy } from "../../context/FantasyContext";
+import { useNavigate } from "react-router-dom";
 const Match = () => {
   const tabs = [
     {
@@ -39,33 +40,39 @@ const Match = () => {
         ))}
       </div>
       {/* match details */}
-      <MatchCard />
+      <MatchCard activeTab={activeTab} />
     </div>
   );
 };
 
-const MatchCard = () => {
+const MatchCard = ({ activeTab }: { activeTab: string }) => {
   const { currentSport } = useFantasy();
   const { data, isLoading, isError } = useAllMatches(currentSport);
-
+  const navigate = useNavigate();
   return (
     <div className={styles.matchCardWrapper}>
       {isLoading ? (
         <div>Loading...</div>
       ) : isError ? (
         <div>Error Loading content...</div>
-      ) : data?.length === 0 ? (
+      ) : data?.length === 0 || activeTab === "completed" ? (
         <div>No Matches found</div>
       ) : (
         <>
           {data.map((match) => (
-            <div key={match.id} className={styles.card}>
+            <div
+              key={match.id}
+              className={styles.card}
+              onClick={() => {
+                navigate(`/my-team/${match.id}`);
+              }}
+            >
               <img
                 src={match.t1_image}
                 alt={match.t1_name}
                 className={styles.logo}
               />
-              
+
               <div className="">
                 <div className={styles.event}>{match.event_name}</div>
                 <span className={styles.teamName}>{match.t1_short_name} </span>
