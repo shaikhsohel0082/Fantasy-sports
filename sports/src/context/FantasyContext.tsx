@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import type { ReactNode } from "react";
 import type { FantasyContextType, FantasyTeam, Player } from "./FantasyTypes";
+import type { SportsName } from "../Pages/UpcomingMatches/UpcomingMatches";
 
 const FantasyContext = createContext<FantasyContextType | undefined>(undefined);
 
@@ -13,6 +14,7 @@ export const FantasyProvider = ({ children }: { children: ReactNode }) => {
     const saved = localStorage.getItem("fantasyTeams");
     return saved ? JSON.parse(saved) : [];
   });
+  const [currentSport, setCurrentSport] = useState<SportsName>("cricket");
 
   const saveTeam = (team: FantasyTeam) => {
     const updated = [...allTeams, team];
@@ -41,6 +43,8 @@ export const FantasyProvider = ({ children }: { children: ReactNode }) => {
         clearPlayers,
         saveTeam,
         allTeams,
+        currentSport,
+        setCurrentSport,
       }}
     >
       {children}
@@ -50,6 +54,7 @@ export const FantasyProvider = ({ children }: { children: ReactNode }) => {
 
 export const useFantasy = () => {
   const context = useContext(FantasyContext);
-  if (!context) throw new Error("useFantasy must be used inside FantasyProvider");
+  if (!context)
+    throw new Error("useFantasy must be used inside FantasyProvider");
   return context;
 };

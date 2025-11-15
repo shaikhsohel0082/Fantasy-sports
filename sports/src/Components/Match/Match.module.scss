@@ -1,0 +1,72 @@
+.matchWrapper {
+  .tabWrapper {
+    background-color: rgb(151, 152, 152);
+    height: 3.5rem;
+    cursor: pointer;
+  }
+  .tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-size: 1.5rem;
+  }
+  .activeTab {
+    background-color: rgb(0, 30, 255);
+  }
+  @media screen and (max-width: 650px) {
+    .tab {
+      font-size: 0.8rem;
+    }
+  }
+}
+.matchCardWrapper {
+  display: flex;
+  width: 100%;
+  margin-top: 3rem;
+  justify-content: center;
+  .card {
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 8px 15px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.934);
+    border-radius: 8px;
+    .logo {
+      height: 5rem;
+      width: 5rem;
+    }
+    .vs {
+      font-size: 2rem;
+      font-weight: bolder;
+    }
+    .event {
+      text-align: center;
+    }
+    .teamName {
+      text-transform: capitalize;
+      font-weight: bolder;
+      font-size: 4rem;
+    }
+     @media screen and (max-width: 800px) {
+    .logo {
+      height: 2.5rem;
+      width: 2.5rem;
+    }
+    .vs {
+      font-size: 1rem;
+      font-weight: bolder;
+    }
+    .teamName {
+      font-size: 2rem;
+    }
+  }
+  }
+  @media screen and (max-width:800px) {
+    .card{
+        width: 90%;
+    }
+  }
+ 
+}
