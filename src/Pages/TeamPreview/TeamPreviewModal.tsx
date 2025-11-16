@@ -51,6 +51,7 @@ const TeamPreviewModal = ({
                   label="C"
                   handleClick={() => {}}
                   isSelected={p.selectedRole === "c"}
+                  isdisabled={true}
                 />
               )}
               {hideCredit && p.selectedRole === "wc" && (
@@ -58,6 +59,7 @@ const TeamPreviewModal = ({
                   label="WC"
                   handleClick={() => {}}
                   isSelected={p.selectedRole === "wc"}
+                  isdisabled={true}
                 />
               )}
             </div>
