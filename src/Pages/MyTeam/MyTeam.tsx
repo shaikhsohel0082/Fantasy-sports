@@ -54,6 +54,7 @@ const MyTeam = () => {
         </div>
       </header>
       <main className={styles.main}>
+        {allTeams.length===0 && <div>No Team is Created yet! Please create a Team.</div>}
         {allTeams?.map((team, idx) => (
           <TeamCard
             team={team}
