@@ -34,11 +34,11 @@
   }
 
   .player {
-    flex: 1;
+    flex:1;
     overflow-y: auto;
-    .playerTitle {
-      padding: 0 10px;
-      margin: 0 10px;
+    .playerTitle{
+       padding: 0 10px;
+  margin: 0 10px;
       width: 95%;
       display: grid;
       grid-template-columns: 1fr 3fr 1fr 1fr 1fr;

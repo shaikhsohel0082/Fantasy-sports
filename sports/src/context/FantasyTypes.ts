@@ -12,8 +12,7 @@ export interface FantasyTeam {
 
 export interface FantasyContextType {
   selectedPlayers: IPlayer[];
-  addPlayer: (player: IPlayer) => void;
-  removePlayer: (id: string) => void;
+  setSelectedPlayers: React.Dispatch<React.SetStateAction<IPlayer[]>>
   clearPlayers: () => void;
 
   saveTeam: (team: FantasyTeam) => void;

@@ -1,24 +1,29 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useAllMatches } from "../../Hooks/useGetAllMatches";
 import { useFantasy } from "../../context/FantasyContext";
-import { useMemo } from "react";
+import { useId, useMemo, useState } from "react";
 import styles from "./MyTeam.module.scss";
 import Backbtn from "../../Components/Backbtn";
 import FooterBtn from "../../Components/footerBtn";
+import TeamCard from "../../Components/TeamCard/TeamCard";
+import type { FantasyTeam } from "../../context/FantasyTypes";
 const MyTeam = () => {
-  const { currentSport } = useFantasy();
+  const { currentSport, allTeams } = useFantasy();
   const { id } = useParams();
   const { data, isLoading } = useAllMatches(currentSport);
   const requiredData = useMemo(() => {
     return data.find((item) => String(item.id) === String(id));
   }, [data, id]);
   const navigate = useNavigate();
+  const [selectedTeam, setSelectedTeam] = useState<FantasyTeam>();
+  const teamId = useId();
   if (isLoading)
     return (
       <div className="h-100 w-100 d-flex justify-content-center align-items-center">
         Loading...
       </div>
     );
+
   return (
     <div className={styles.teamWrapper}>
       <header className={`${styles.header}`}>
@@ -48,12 +53,28 @@ const MyTeam = () => {
           </div>
         </div>
       </header>
-      <main></main>
+      <main className={styles.main}>
+        {allTeams?.map((team, idx) => (
+          <TeamCard
+            team={team}
+            key={team.id}
+            index={idx}
+            handleSelect={() => {
+              if (selectedTeam?.id === team.id) {
+                setSelectedTeam(undefined);
+              } else {
+                setSelectedTeam(team);
+              }
+            }}
+            isSelected={team.id === selectedTeam?.id}
+          />
+        ))}
+      </main>
       <FooterBtn
         label1="Create Team"
         label2="Register Team with"
         handleleftBtn={() => {
-          navigate("/pick-player");
+          navigate(`/${id}/pick-player/${teamId}`);
         }}
         handlelRightBtn={() => {}}
       />

@@ -1,12 +1,19 @@
 import { createContext, useContext, useState } from "react";
 import type { ReactNode } from "react";
-import type { FantasyContextType, FantasyTeam, Player, SportsName } from "./FantasyTypes";
-
+import type {
+  FantasyContextType,
+  FantasyTeam,
+  SportsName,
+} from "./FantasyTypes";
+import type { IPlayer } from "../Services/getAllPlayers";
 
 const FantasyContext = createContext<FantasyContextType | undefined>(undefined);
 
 export const FantasyProvider = ({ children }: { children: ReactNode }) => {
-  const [selectedPlayers, setSelectedPlayers] = useState<Player[]>([]);
+  const [selectedPlayers, setSelectedPlayers] = useState<IPlayer[]>(() => {
+    const saved = localStorage.getItem("selectedPlayers");
+    return saved ? JSON.parse(saved) : [];
+  });
 
   const [allTeams, setAllTeams] = useState<FantasyTeam[]>(() => {
     const saved = localStorage.getItem("fantasyTeams");
@@ -15,18 +22,26 @@ export const FantasyProvider = ({ children }: { children: ReactNode }) => {
   const [currentSport, setCurrentSport] = useState<SportsName>("cricket");
 
   const saveTeam = (team: FantasyTeam) => {
-    const updated = [...allTeams, team];
-    setAllTeams(updated);
-    localStorage.setItem("fantasyTeams", JSON.stringify(updated));
-  };
+  // check if team already exists
+  const exists = allTeams.some((t) => t.id === team.id);
 
-  const addPlayer = (player: Player) => {
-    setSelectedPlayers((prev) => [...prev, player]);
-  };
+  let updatedTeams;
 
-  const removePlayer = (id: string) => {
-    setSelectedPlayers((prev) => prev.filter((p) => p.id !== id));
-  };
+  if (exists) {
+    // update existing team
+    updatedTeams = allTeams.map((t) =>
+      t.id === team.id ? team : t
+    );
+  } else {
+    // create new team
+    updatedTeams = [...allTeams, team];
+  }
+
+  // update state + localStorage
+  setAllTeams(updatedTeams);
+  localStorage.setItem("fantasyTeams", JSON.stringify(updatedTeams));
+};
+
 
   const clearPlayers = () => setSelectedPlayers([]);
 
@@ -34,13 +49,12 @@ export const FantasyProvider = ({ children }: { children: ReactNode }) => {
     <FantasyContext.Provider
       value={{
         selectedPlayers,
-        addPlayer,
-        removePlayer,
         clearPlayers,
         saveTeam,
         allTeams,
         currentSport,
         setCurrentSport,
+        setSelectedPlayers,
       }}
     >
       {children}

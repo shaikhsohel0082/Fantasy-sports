@@ -4,30 +4,41 @@ interface Props {
   label2: string;
   handleleftBtn: () => void;
   handlelRightBtn: () => void;
+  isLeftBtnDisabled?: boolean;
+  isRightBtnDisabled?: boolean;
 }
 const FooterBtn = ({
   label1,
   label2,
   handleleftBtn,
   handlelRightBtn,
+  isLeftBtnDisabled,
+  isRightBtnDisabled,
 }: Props) => {
   return (
-    <footer className={`${styles.footer}`}>
-      <div className={`${styles.footerWrapper}`}>
-        <div className="d-flex w-100 justify-content-evenly">
-          <button className="btn btn-outline-primary" onClick={handleleftBtn}>
-            {label1}
-          </button>
-          <button className="btn btn-outline-danger">{label2}</button>
-        </div>
-        <div
-          className={`${styles.startText} animate__animated animate__heartBeat animate__infinite mt-2`}
-          onClick={handlelRightBtn}
+    <div className={`${styles.footerWrapper}`}>
+      <div className="d-flex w-100 justify-content-evenly">
+        <button
+          className="btn btn-outline-primary"
+          onClick={handleleftBtn}
+          disabled={isLeftBtnDisabled}
         >
-          Registrations closes soon
-        </div>
+          {label1}
+        </button>
+        <button
+          className="btn btn-outline-danger"
+          onClick={handlelRightBtn}
+          disabled={isRightBtnDisabled}
+        >
+          {label2}
+        </button>
       </div>
-    </footer>
+      <div
+        className={`${styles.startText} animate__animated animate__heartBeat animate__infinite`}
+      >
+        Registrations closes soon
+      </div>
+    </div>
   );
 };
 

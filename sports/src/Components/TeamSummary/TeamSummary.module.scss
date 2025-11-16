@@ -1,0 +1,84 @@
+.summaryWrapper {
+  background: #0b1020;
+  padding: 1rem;
+  border-radius: 12px;
+  color: white;
+}
+
+.teamRow {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.teamBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.teamLogo {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+}
+
+.teamBadge {
+  position: absolute;
+  top: -5px;
+  right: -8px;
+  background: #0284c7;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+}
+
+.teamName {
+  margin-top: 4px;
+  font-size: 0.9rem;
+}
+
+.infoRow {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+}
+
+.smallLabel {
+  color: #b3b3b3;
+  font-size: 0.75rem;
+}
+
+.bigText {
+  font-size: 1.4rem;
+  font-weight: bold;
+
+  span {
+    font-size: 0.8rem;
+    color: #b3b3b3;
+  }
+}
+
+.progressRow {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1.2rem;
+}
+
+.circle {
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  border: 2px solid #777;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.7rem;
+}
+
+.filled {
+  background: #ff3b4b;
+  border-color: #ff3b4b;
+  color: white;
+}

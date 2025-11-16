@@ -1,0 +1,124 @@
+.card {
+  background: #1c1c1e;
+  border-radius: 12px;
+  padding: 1rem;
+  width: 90%;
+  color: white;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.07);
+
+  /* smooth scaling */
+  font-size: clamp(12px, 1.1vw, 16px);
+  margin-bottom: 2rem;
+}
+
+/* HEADER */
+.headerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .teamName {
+    font-size: clamp(14px, 1.3vw, 20px);
+    font-weight: 600;
+  }
+
+  .icons {
+    display: flex;
+    gap: 0.7rem;
+
+    i {
+      font-size: clamp(16px, 1.4vw, 22px);
+      cursor: pointer;
+      opacity: 0.85;
+      transition: 0.2s;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+/* CAPTAIN SECTION */
+.captains {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 1rem;
+
+  .player {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    flex: 1 1 220px; /* auto responsive block */
+
+    .avatar {
+      width: clamp(35px, 4vw, 55px);
+      height: clamp(35px, 4vw, 55px);
+    }
+
+    .nameBox {
+      display: flex;
+      flex-direction: column;
+
+      .name {
+        font-size: clamp(13px, 1.1vw, 18px);
+        font-weight: 600;
+      }
+
+      .captainTag {
+        color: #42ff70;
+        font-size: clamp(11px, 1vw, 14px);
+      }
+
+      .vcTag {
+        color: #6ce0ff;
+        font-size: clamp(11px, 1vw, 14px);
+      }
+    }
+  }
+}
+
+/* BOTTOM ROLE ROW */
+.bottomRow {
+  margin-top: 1.4rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+
+  .roleBox {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    flex: 1 1 60px; /* wraps automatically */
+
+    font-size: clamp(12px, 1.1vw, 15px);
+
+    span {
+      font-size: clamp(14px, 1.4vw, 20px);
+      font-weight: 600;
+    }
+  }
+
+  .previewBtn {
+    background: #ff4267;
+    color: #fff;
+    padding: clamp(6px, 0.8vw, 10px) clamp(10px, 1.4vw, 18px);
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    flex-shrink: 0;
+    font-size: clamp(13px, 1.1vw, 18px);
+
+    transition: background 0.25s;
+
+    &:hover {
+      background: #ff5c7b;
+    }
+  }
+}
+.selectedTeam{
+  background-color: rgb(26, 26, 147);
+}

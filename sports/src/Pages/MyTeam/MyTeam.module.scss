@@ -1,35 +1,44 @@
-.teamWrapper{
-    height: 100vh;
-    display: grid;
-    grid-template-rows: 2fr 5fr 1fr;
-    .header{
-        padding-top: 1rem;
-        font-size: 1.5rem;
-        display: flex;
-        flex-direction: column;
-        .matchDetails{
-            width: 95%;
-            background-color: aliceblue;
-            margin-top: 1rem;
-            align-self: center;
-            border-radius:8px ;
-            box-shadow: 0 0 10px gray;
-            color: black;
-           
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 5px 30px;
-        }
-        .mathcLabel{
-            font-weight: bolder;
-             text-transform: uppercase;
+.teamWrapper {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  overflow: hidden;
 
-        }
-        .startText{
-            font-size: 1rem;
-            color: red;
-        }
+  .header {
+    padding-top: 1rem;
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    .matchDetails {
+      width: 95%;
+      background-color: aliceblue;
+      margin-top: 1rem;
+      align-self: center;
+      border-radius: 8px;
+      box-shadow: 0 0 10px gray;
+      color: black;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px 30px;
     }
-    
+    .mathcLabel {
+      font-weight: bolder;
+      text-transform: uppercase;
+    }
+    .startText {
+      font-size: 1rem;
+      color: red;
+    }
+  }
+  .main {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding:2rem 0;
+  }
 }

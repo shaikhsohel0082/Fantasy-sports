@@ -12,6 +12,7 @@ export interface IPlayer {
   event_total_points: number;
   event_player_credit: number;
   team_id: number;
+  selectedRole?:"c"|"wc"
 }
 
 export const getAllPlayers = async () => {
