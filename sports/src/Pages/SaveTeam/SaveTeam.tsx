@@ -15,7 +15,6 @@ const SaveTeam = () => {
   const [openPreview, setOpenPreview] = useState(false);
   const params = useParams();
   
- 
   const fantasyTeam: FantasyTeam = useMemo(
     () => ({
       id:params?.teamId+"",
@@ -69,7 +68,7 @@ const SaveTeam = () => {
             selectedPlayers.some((player) => player.selectedRole === "wc")
           ) {
             saveTeam(fantasyTeam);
-            navigate(`/my-team/${params.id}`);
+            navigate(`/my-team/${params.matchId}`);
             clearPlayers();
           } else {
             toast.error("Select Captain and vice captain to continue!");
