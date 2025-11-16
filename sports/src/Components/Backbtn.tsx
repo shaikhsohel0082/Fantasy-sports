@@ -1,5 +1,4 @@
-import React from 'react'
-import styles from "./Components.module.scss"
+import styles from "./Components.module.scss";
 interface Props{
     label:string;
     handleRedirect:()=>void

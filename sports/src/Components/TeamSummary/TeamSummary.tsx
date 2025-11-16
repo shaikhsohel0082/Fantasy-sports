@@ -29,7 +29,6 @@ const getTeamCount = (players: IPlayer[]) => {
 
 const TeamSummary = ({
   selectedPlayers,
-  totalCredits,
   creditsLeft,
   context,
 }: Props) => {

@@ -1,14 +1,14 @@
-import React, { useId, useMemo, useState } from "react";
-import styles from "./SaveTeam.module.scss";
-import Backbtn from "../../Components/Backbtn";
+import { useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import Backbtn from "../../Components/Backbtn";
+import FooterBtn from "../../Components/footerBtn";
+import Player from "../../Components/Player/Player";
 import TeamSummary from "../../Components/TeamSummary/TeamSummary";
 import { useFantasy } from "../../context/FantasyContext";
-import Player from "../../Components/Player/Player";
-import TeamPreviewModal from "../TeamPreview/TeamPreviewModal";
-import FooterBtn from "../../Components/footerBtn";
 import type { FantasyTeam } from "../../context/FantasyTypes";
-import { toast } from "react-toastify";
+import TeamPreviewModal from "../TeamPreview/TeamPreviewModal";
+import styles from "./SaveTeam.module.scss";
 const SaveTeam = () => {
   const navigate = useNavigate();
   const { selectedPlayers, saveTeam ,clearPlayers} = useFantasy();

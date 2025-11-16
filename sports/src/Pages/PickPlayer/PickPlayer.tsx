@@ -1,5 +1,6 @@
-import { useId, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import Backbtn from "../../Components/Backbtn";
 import FooterBtn from "../../Components/footerBtn";
 import Player from "../../Components/Player/Player";
@@ -9,7 +10,6 @@ import { useGetAllPlayers } from "../../Hooks/useGetAllPlayers";
 import type { PlayerRole } from "../../Services/getAllPlayers";
 import TeamPreviewModal from "../TeamPreview/TeamPreviewModal";
 import styles from "./PickPlayer.module.scss";
-import { toast } from "react-toastify";
 const tabs: Array<{
   id: PlayerRole;
   value: string;

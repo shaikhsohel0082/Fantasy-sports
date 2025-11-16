@@ -12,7 +12,7 @@ import { ToastContainer } from "react-toastify";
 const queryClient = new QueryClient();
 createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
-    {/* <StrictMode> */}
+    <StrictMode>
       <FantasyProvider>
         <QueryClientProvider client={queryClient}>
           <ToastContainer
@@ -28,6 +28,6 @@ createRoot(document.getElementById("root")!).render(
           <App />
         </QueryClientProvider>
       </FantasyProvider>
-    {/* </StrictMode> */}
+    </StrictMode>
   </BrowserRouter>
 );
