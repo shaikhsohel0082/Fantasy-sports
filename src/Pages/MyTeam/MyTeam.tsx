@@ -76,7 +76,9 @@ const MyTeam = () => {
         handleleftBtn={() => {
           navigate(`/${id}/pick-player/${teamId}`);
         }}
-        handlelRightBtn={() => {}}
+        handlelRightBtn={() => {
+          alert("This feature is not implemnted yet")
+        }}
       />
     </div>
   );
