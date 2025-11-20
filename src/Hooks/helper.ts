@@ -63,3 +63,10 @@ const canSelectPlayer = (selected: IPlayer[], player: IPlayer) => {
   return true;
 };
 export { canSelectPlayer };
+export const validatePlayers=(selected: IPlayer[])=>{
+  if(selected.filter((player)=>player.role==="Wicket-Keeper").length===0){
+     toast.error("Minimum 1 WK required!");
+     return false;
+  }
+  
+}

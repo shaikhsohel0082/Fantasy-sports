@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import Backbtn from "../../Components/Backbtn";
@@ -7,9 +7,10 @@ import Player from "../../Components/Player/Player";
 import TeamSummary from "../../Components/TeamSummary/TeamSummary";
 import { useFantasy } from "../../context/FantasyContext";
 import { useGetAllPlayers } from "../../Hooks/useGetAllPlayers";
-import type { PlayerRole } from "../../Services/getAllPlayers";
+import type { IPlayer, PlayerRole } from "../../Services/getAllPlayers";
 import TeamPreviewModal from "../TeamPreview/TeamPreviewModal";
 import styles from "./PickPlayer.module.scss";
+import { validatePlayers } from "../../Hooks/helper";
 const tabs: Array<{
   id: PlayerRole;
   value: string;
@@ -31,9 +32,10 @@ const tabs: Array<{
     value: "Bowler",
   },
 ];
+
 const PickPlayer = () => {
   const navigate = useNavigate();
-  const { selectedPlayers } = useFantasy();
+  const { selectedPlayers, clearPlayers } = useFantasy();
   const params = useParams();
   const [activeTab, setActiveTab] = useState(tabs[0].id);
   const [openPreview, setOpenPreview] = useState(false);
@@ -45,6 +47,12 @@ const PickPlayer = () => {
   }, [selectedPlayers]);
 
   const { tabData } = useGetAllPlayers({ tab: activeTab });
+  const getRoleCount = useCallback(
+    (selectedPlayers: IPlayer[], role: PlayerRole) => {
+      return selectedPlayers.filter((player) => player.role === role).length;
+    },
+    []
+  );
   return (
     <div className={`${styles.wrapper}`}>
       <header className={`${styles.header}`}>
@@ -64,17 +72,22 @@ const PickPlayer = () => {
         />
         <div className={`${styles.tabWrapper}`}>
           {tabs.map((tab) => (
-            <div
-              onClick={() => {
-                setActiveTab(tab.id);
-              }}
-              className={`${activeTab === tab.id ? styles.activeTab : ""} ${
-                styles.tab
-              }`}
-              key={tab.id}
-            >
-              {tab.value}
-            </div>
+            <>
+              <div
+                onClick={() => {
+                  setActiveTab(tab.id);
+                }}
+                className={`${activeTab === tab.id ? styles.activeTab : ""} ${
+                  styles.tab
+                }`}
+                key={tab.id}
+              >
+                {tab.value}
+              </div>
+              <div className="text-black">
+                ({getRoleCount(selectedPlayers, tab.id)})
+              </div>
+            </>
           ))}
         </div>
         <div className={`${styles.player}`}>
@@ -103,13 +116,20 @@ const PickPlayer = () => {
           }
         }}
         handlelRightBtn={() => {
-          if (selectedPlayers.length === 11) {
+          if (selectedPlayers.length === 11 || validatePlayers(selectedPlayers)) {
             navigate(`/${params?.matchId}/save-team/${params.teamId}`);
           } else {
             toast.error("Team size must be of 11 players!");
           }
         }}
       />
+      <button
+        onClick={() => {
+          clearPlayers();
+        }}
+      >
+        ClearAll
+      </button>
     </div>
   );
 };
